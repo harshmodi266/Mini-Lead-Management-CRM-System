@@ -1,4 +1,14 @@
 admin@gmail.com  ---  12345678
 
 harshmodi084@gmail.com --- 123@Harsh
-    
+
+
+    Remove old credentials
+
+Credential Manager → Windows Credentials → GitHub entries delete.
+
+Then push again
+git push -u origin main
+Login with:
+Username: harshmodi266
+Password: Personal Access Token
