@@ -13,7 +13,7 @@ class LeadController extends Controller
      */
     public function index()
     {
-        $leads = Lead::latest()->get();
+        $leads = Lead::latest()->paginate(3);
 
         return view('leads.index', compact('leads'));
     }
@@ -118,7 +118,7 @@ class LeadController extends Controller
 
        if($status == '')
     {
-        $leads = Lead::latest()->get();
+        $leads = Lead::latest()->paginate(3);
     }
     else
     {
