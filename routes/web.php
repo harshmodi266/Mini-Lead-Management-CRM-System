@@ -16,6 +16,13 @@ Route::middleware(['auth'])->group(function () {
 
 });     
 
+// leads
+Route::middleware(['auth'])->group(function () {
+
+    Route::resource('leads', LeadController::class);
+
+});
+
 // Route::middleware(['auth'])->group(function () {
 
 //     Route::get('/', [LeadController::class, 'index']);

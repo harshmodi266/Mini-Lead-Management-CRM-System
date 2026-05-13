@@ -36,9 +36,17 @@ class LoginController extends Controller
 
         'email' => 'required|email',
 
-        'password' => 'required|min:8',
+        'password' => [
+                        'required',
+                        'string',
+                        'min:8',
+                        'regex:/[a-z]/',
+                        'regex:/[A-Z]/',
+                        'regex:/[0-9]/',
+                        'regex:/[@$!%*#?&]/'
+                    ],
 
-    ], [
+    ], [    
 
         'email.required' => 'Email is required',
 
