@@ -21,6 +21,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('leads', LeadController::class);
 
+// search
+Route::get('/search-leads', [LeadController::class, 'search']);
+
 });
 
 // Route::middleware(['auth'])->group(function () {

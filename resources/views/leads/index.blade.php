@@ -5,12 +5,23 @@
 <div class="d-flex justify-content-between mb-4">
 
     <h2>Lead Management</h2>
+    <div class="mb-3">
+
+    <input
+        type="text"
+        id="search"
+        class="form-control"
+        placeholder="Search Lead..."
+    >
+
+</div>
 
     <a href="{{ route('leads.create') }}" class="btn btn-primary">
         Add Lead
     </a>
 
 </div>
+
 
 @if(session('success'))
 
@@ -48,7 +59,7 @@
 
             </thead>
 
-            <tbody>
+            <tbody id="leadTable">
 
                 @foreach($leads as $lead)
 
@@ -113,5 +124,42 @@
     </div>
 
 </div>
+@push('scripts')
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+
+$(document).ready(function(){
+
+    $('#search').keyup(function(){
+
+        let search = $(this).val();
+
+        $.ajax({
+
+            url:'/search-leads',
+
+            type:'GET',
+
+            data:{
+                search:search
+            },
+
+            success:function(response){
+
+                $('#leadTable').html(response);
+
+            }
+
+        });
+
+    });
+
+});
+
+</script>
+
+@endpush
 
 @endsection

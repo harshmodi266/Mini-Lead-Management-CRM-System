@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Lead;
 use Illuminate\Http\Request;
 
+
 class LeadController extends Controller
 {
     /**
@@ -99,6 +100,17 @@ class LeadController extends Controller
             ->with('success', 'Lead Updated Successfully');
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->search;
+
+       $leads = Lead::where('full_name', 'LIKE', '%' . $search . '%')
+    ->orWhere('email', 'LIKE', '%' . $search . '%')
+    ->get();
+
+        return view('leads.search', compact('leads'))->render();
+    }
+    
     /**
      * Remove the specified resource from storage.
      */
@@ -112,4 +124,6 @@ class LeadController extends Controller
             ->route('leads.index')
             ->with('success', 'Lead Deleted Successfully');
     }
+
+    
 }
