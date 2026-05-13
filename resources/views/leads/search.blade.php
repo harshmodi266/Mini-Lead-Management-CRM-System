@@ -1,4 +1,4 @@
-@foreach($leads as $lead)
+@forelse($leads as $lead)
 
 <tr>
 
@@ -30,8 +30,35 @@
             Edit
         </a>
 
+        <form
+            action="{{ route('leads.destroy',$lead->id) }}"
+            method="POST"
+            class="d-inline"
+        >
+
+            @csrf
+            @method('DELETE')
+
+            <button
+                class="btn btn-danger btn-sm"
+            >
+                Delete
+            </button>
+
+        </form>
+
     </td>
 
 </tr>
 
-@endforeach
+@empty
+
+<tr>
+
+    <td colspan="7" class="text-center">
+        No Leads Found
+    </td>
+
+</tr>
+
+@endforelse

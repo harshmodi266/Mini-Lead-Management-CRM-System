@@ -99,7 +99,7 @@ class LeadController extends Controller
             ->route('leads.index')
             ->with('success', 'Lead Updated Successfully');
     }
-
+    // live search
     public function search(Request $request)
     {
         $search = $request->search;
@@ -111,6 +111,36 @@ class LeadController extends Controller
         return view('leads.search', compact('leads'))->render();
     }
     
+    // Filter Leads by Status
+    public function filter(Request $request)
+    {
+        $status = $request->status;
+
+       if($status == '')
+    {
+        $leads = Lead::latest()->get();
+    }
+    else
+    {
+        $leads = Lead::where('lead_status', $status)->get();
+    }
+
+    return view('leads.search', compact('leads'))->render();
+    }
+
+// status update
+    public function statusUpdate(Request $request, $id)
+    {
+        $lead = Lead::findOrFail($id);
+
+        $lead->lead_status = $request->status;
+
+        $lead->save();
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
     /**
      * Remove the specified resource from storage.
      */

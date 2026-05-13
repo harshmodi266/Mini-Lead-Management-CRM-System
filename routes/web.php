@@ -24,6 +24,11 @@ Route::middleware(['auth'])->group(function () {
 // search
 Route::get('/search-leads', [LeadController::class, 'search']);
 
+// Filter Leads by Status
+Route::get('/filter-leads', [LeadController::class, 'filter']);
+
+// status
+Route::post('/lead-status-update/{id}', [LeadController::class, 'statusUpdate']);
 });
 
 // Route::middleware(['auth'])->group(function () {
