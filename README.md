@@ -85,3 +85,12 @@ php artisan serve
 Admin Login
 
 go to the notes file 
+
+
+LAST APIs test on postman
+
+1.Get All Leads
+GET /api/leads
+
+2.Create Lead
+POST /api/leads
