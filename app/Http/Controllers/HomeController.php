@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Lead;
 
 class HomeController extends Controller
 {
@@ -21,8 +22,22 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    // public function index()
     public function index()
-    {
-        return view('dashboard  ');
-    }
+{
+    $totalLeads = Lead::count();
+
+    $convertedLeads = Lead::where('lead_status', 'converted')->count();
+
+    $followUpLeads = Lead::where('lead_status', 'Follow-up')->count();
+
+    $lostLeads = Lead::where('lead_status', 'lost')->count();
+
+    return view('dashboard', compact(
+        'totalLeads',
+        'convertedLeads',
+        'followUpLeads',
+        'lostLeads'
+    ));
+}
 }

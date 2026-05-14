@@ -38,15 +38,22 @@
         <option value="Lost">
             Lost
         </option>
-
     </select>
-
 </div>
 
-    <a href="{{ route('leads.create') }}" class="btn btn-primary">
+  <a href="{{ route('leads.create') }}" class="btn btn-primary">
         Add Lead
     </a>
+    
+  <div class="d-flex align-items-center gap-2">
 
+    <a href="{{ route('dashboard') }}" class="btn btn-secondary">
+        Back To Dashboard
+    </a>
+
+    <!-- <h2 class="mb-0">Lead Management</h2> -->
+
+</div>
 </div>
 
 

@@ -11,12 +11,37 @@ class LeadController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $leads = Lead::latest()->paginate(3);
+        $query = Lead::query();
+
+        // if ($request->status) {
+        //     $query->where('status', $request->status);
+        // }
+        // Status Filter
+    if ($request->lead_status) {
+
+        if ($request->lead_status == 'converted') {
+            $query->where('lead_status', 'Converted');
+        }
+
+        elseif ($request->lead_status == 'Follow-up') {
+            $query->where('lead_status', 'Follow-up');
+        }
+
+        elseif ($request->lead_status == 'lost') {
+            $query->where('lead_status', 'Lost');
+        }
+    }
+
+
+        $leads = $query->latest()->paginate(5);
+
 
         return view('leads.index', compact('leads'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
